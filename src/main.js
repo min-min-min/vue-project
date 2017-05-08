@@ -15,5 +15,23 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: {App}
+})
+
+router.beforeEach((to, from, next) => {
+
+  if (to.meta.requireAuth) {
+    if (window.sessionStorage.getItem("sellercube_token")) {
+      console.log("sessionStorage 的token"+window.sessionStorage.getItem("sellercube_token"))
+      next();
+    } else {
+      next({
+        path: '/',
+        query: {redirect: to.path}  // 将跳转的路由path作为参数，登录成功后跳转到该路由
+      })
+    }
+  }
+  else {
+    next();
+  }
 })
