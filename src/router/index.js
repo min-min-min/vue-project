@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
-import test from  '@/views/test'
-import login from  '@/views/login'
+import test from  '../views/test'
+import login from  '../views/login'
 
 Vue.use(Router)
 export default new Router({

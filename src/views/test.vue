@@ -72,15 +72,6 @@
       }
     }
   }
-
-  $(document).ready(function () {
-    $("#btn1").click(function () {
-      alert("Sadad")
-    })
-    $("#btn1").mouseover(function () {
-      console.log("asdasdsadasfdfgdfgdfg")
-    })
-  })
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
