@@ -13,10 +13,11 @@ import VueResource from 'vue-resource'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
+Vue.use(VueResource)
+Vue.use(router)
 new Vue({
   el: '#app',
   router,
-  VueResource,
   template: '<App/>',
   components: {App}
 })

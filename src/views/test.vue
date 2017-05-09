@@ -59,6 +59,13 @@
     <button id="btn1" class="btn btn-default">click</button>
     <input class="form-control" v-model="msg2"/>
     <h1>{{ msg2 }}</h1>
+    <button @click="getDouBan" type="button" class="btn btn-primary">点击获取豆瓣排行榜top10</button>
+    <br/><br/>
+    <ul>
+      <li v-for="article in articles">
+        <p class="bg-primary" style="height:30px">{{article.title}}</p>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -68,29 +75,20 @@
     data () {
       return {
         msg: '这个页面是用来测试各种组件的',
-        msg2: ''
+        msg2: '',
+        articles: []
+      }
+    },
+    methods: {
+      getDouBan: function () {
+        this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10').then(function (response) {
+          // 这里是处理正确的回调
+          this.articles = response.data.subjects
+        }, function (response) {
+          // 这里是处理错误的回调
+          console.log(response)
+        })
       }
     }
   }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  h1, h2 {
-    font-weight: normal;
-  }
-
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-
-  a {
-    color: #42b983;
-  }
-</style>
