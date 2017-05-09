@@ -34,8 +34,8 @@
     name: 'login',
     data () {
       return {
-        username:'',
-        password:''
+        username:global.username,
+        password:global.password
       }
     },
     methods:{
