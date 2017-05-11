@@ -56,9 +56,9 @@
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
     </ul>
-    <button id="btn1" class="btn btn-default">click</button>
     <input class="form-control" v-model="msg2"/>
     <h1>{{ msg2 }}</h1>
+    <button id="show-modal" @click="showModal = true" class="btn btn-danger">显示模态框吧</button>
     <button @click="getDouBan" type="button" class="btn btn-primary">点击获取豆瓣排行榜top10</button>
     <br/><br/>
     <ul>
@@ -66,18 +66,26 @@
         <p class="bg-primary" style="height:30px">{{article.title}}</p>
       </li>
     </ul>
+    <modal v-if="showModal" @close="showModal = false">
+      <h3 slot="header">custom header</h3>
+    </modal>
   </div>
 </template>
 
 <script>
+  import Modal from './model'
   export default {
     name: 'test',
     data () {
       return {
         msg: '这个页面是用来测试各种组件的',
         msg2: '',
-        articles: []
+        articles: [],
+        showModal:false
       }
+    },
+    components:{
+      Modal
     },
     methods: {
       getDouBan: function () {
