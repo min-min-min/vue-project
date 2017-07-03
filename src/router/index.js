@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import test from  '../views/test'
 import login from  '../views/login'
+import home from '../views/main/main'
 
 Vue.use(Router)
 export default new Router({
@@ -9,7 +10,6 @@ export default new Router({
     {
       path: '/',
       name: 'login',
-      requireAuth: true,
       component: login
     },
     {
@@ -19,6 +19,14 @@ export default new Router({
         requireAuth: true
       },
       component: test
+    },
+    {
+      path: '/main',
+      name: 'main',
+      meta: {
+        requireAuth: true
+      },
+      component: home
     }
   ]
 })

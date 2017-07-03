@@ -30,7 +30,6 @@ router.beforeEach((to, from, next) => {
   if (to.meta.requireAuth) {
     if (window.sessionStorage.getItem("sellercube_token")) {
       NProgress.start();
-      console.log("sessionStorage 的token"+window.sessionStorage.getItem("sellercube_token"))
       next();
     } else {
       next({
@@ -38,19 +37,18 @@ router.beforeEach((to, from, next) => {
         query: {redirect: to.path}  // 将跳转的路由path作为参数，登录成功后跳转到该路由
       })
     }
-  }
-  else {
+  } else {
     next();
   }
 })
 
-router.afterEach((to,from,next) => {
+router.afterEach((to, from, next) => {
   NProgress.done();
 });
 
 Vue.http.interceptors.push((request, next) => {
   NProgress.start();
-  next((response)=>{
+  next((response) => {
     NProgress.done();
   });
 });

@@ -66,14 +66,14 @@
         <p class="bg-primary" style="height:30px">{{article.title}}</p>
       </li>
     </ul>
-    <modal v-if="showModal" @close="showModal = false">
+    <modala v-if="showModal" @close="showModal = false">
       <h3 slot="header">custom header</h3>
-    </modal>
+    </modala>
   </div>
 </template>
 
 <script>
-  import Modal from './model'
+  import Modala from './model/model'
   export default {
     name: 'test',
     data () {
@@ -81,11 +81,18 @@
         msg: '这个页面是用来测试各种组件的',
         msg2: '',
         articles: [],
-        showModal:false
+        showModal: false
       }
     },
-    components:{
-      Modal
+    components: {
+      Modala
+    },
+    beforeCreate(){
+      //检查有没有登录
+      if (!window.sessionStorage.getItem("sellercube_token")) {
+          alert(window.sessionStorage.getItem("sellercube_token"))
+        this.$router.push("/")
+      }
     },
     methods: {
       getDouBan: function () {
